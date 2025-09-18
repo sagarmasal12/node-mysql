@@ -1,5 +1,5 @@
 const express = require("express")
-const { getStudents } = require("../controllers/studentController")
+const { getStudents, getStudentsbyId } = require("../controllers/studentController")
 
 
 // router obj 
@@ -10,5 +10,6 @@ const router = express.Router()
 
 // Get ALl students list || get
 router.get('/getall',getStudents) 
+router.get('/get/:id',getStudentsbyId)
 
 module.exports = router;
