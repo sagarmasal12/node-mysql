@@ -26,6 +26,74 @@ const getStudents = async(req,res)=>{
     }
 }
 
+const getStudentsbyId =async (req,res)=> {
+    // try {
+    //     const studentId = req.params.id
+    //     console.log("student data print",studentId)
+    //     if(!studentId){
+    //         return res.status(404).send({
+    //             success:false,
+    //             message:'Invalid Provide student id'
+    //         })
+    //     }
+    //       // const data = await db.query(`SELECT * FROM students WHERE id=`+studentId)
+    //         const data = await db.query(`SELECT * FROM students WHERE id=?`,[studentId])
+    //         if(!data){
+    //             return res.status(404).send({
+    //                 success:false,
+    //                 message:'no Record found'
+    //             })
+    //         }
+    //         res.status(200).send({
+    //             success:true,
+    //             studentdetails:data[0],
+                
+    //         })
+
+        
+        
+    // } catch (error) {
+    //     console.log(error),
+    //     res.status(500).send({
+    //         success:false,
+    //         message:'Error in get all studentsid',
+    //         error,
+    //     })
+    // }
+
+    try {
+        const studentId = req.params.id;
+        if(!studentId){
+           return res.status(404).send({
+                success:false,
+                message:'Data Not Provide'
+            })
+        }
+        const data = await db.query('SELECT * FROM students WHERE Id=?',[studentId])
+        if(!data){
+            return res.status(404).send({
+                success:false,
+                message:"data not found"
+            })
+        }
+        res.status(200).send({
+            success:true,
+            message:"Data Found",
+            studentdetails:data[0]
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            message:'Data Not Provide',
+            error
+            
+
+        })
+    }
+}
 
 
-module.exports={getStudents}
+
+module.exports={getStudents,getStudentsbyId}
