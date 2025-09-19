@@ -94,6 +94,11 @@ const getStudentsbyId =async (req,res)=> {
     }
 }
 
+const createStudent =async (req,res)=>{
 
 
-module.exports={getStudents,getStudentsbyId}
+}
+
+
+
+module.exports={getStudents,getStudentsbyId,createStudent}
