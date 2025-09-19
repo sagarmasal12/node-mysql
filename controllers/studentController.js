@@ -96,6 +96,34 @@ const getStudentsbyId =async (req,res)=> {
 
 const createStudent =async (req,res)=>{
 
+    try {
+        const {name,roll_no,fees,medium}=req.body
+        if(!name||!roll_no||!fees||!medium){
+           return res.status(404).send({
+                message:"Please Provide All data"
+            })
+        }
+
+        const data = await db.query('INSERT INTO students (name,roll_no,fees,medium) VALUES(?,?,?,?)',[name,roll_no,fees,medium])
+        if(!data){
+           return res.status(401).send({
+                success:false,
+                message:"Something went to wrong"
+            })
+        }
+        res.status(200).send({
+            success:true,
+            message:"Inserted New Query Successfully"
+        })
+        
+    } catch (error) {
+        console.log(error),
+        res.status(500).send({
+            success:false,
+            message:"Error In Create Api",
+            error
+        })
+    }
 
 }
 
