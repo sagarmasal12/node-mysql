@@ -97,14 +97,14 @@ const getStudentsbyId =async (req,res)=> {
 const createStudent =async (req,res)=>{
 
     try {
-        const {name,roll_nol,fees,medium}=req.body
+        const {name,roll_nol,fees,standard,medium}=req.body
         if(!name||!roll_nol||!fees||!medium){
            return res.status(404).send({
                 message:"Please Provide All data"
             })
         }
 
-        const data = await db.query('INSERT INTO students (name,roll_nol,fees,medium) VALUES(?,?,?,?)',[name,roll_nol,fees,medium])
+        const data = await db.query('INSERT INTO students (name,roll_nol,fees,standard,medium) VALUES(?,?,?,?,?)',[name,roll_nol,fees,standard,medium])
         if(!data){
            return res.status(401).send({
                 success:false,
@@ -137,8 +137,8 @@ const updateStudent = async (req,res)=>{
                 message:("Invalid StudentId or Provide Id")
             })
         }
-        const {name, roll_nol,fees,medium}= req.body;
-        const data = await db.query("UPDATE students SET name=?, roll_nol=?, fees=?,medium=? WHERE id=?",[name, roll_nol,fees,medium,studentId]);
+        const {name, roll_nol,fees,standard,medium}= req.body;
+        const data = await db.query("UPDATE students SET name=?, roll_nol=?, fees=?, standard=?,medium=? WHERE id=?",[name, roll_nol,fees,standard,medium,studentId]);
 
         if(!data){
             return res.status({
