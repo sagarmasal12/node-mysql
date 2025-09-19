@@ -97,14 +97,14 @@ const getStudentsbyId =async (req,res)=> {
 const createStudent =async (req,res)=>{
 
     try {
-        const {name,roll_no,fees,medium}=req.body
-        if(!name||!roll_no||!fees||!medium){
+        const {name,roll_nol,fees,medium}=req.body
+        if(!name||!roll_nol||!fees||!medium){
            return res.status(404).send({
                 message:"Please Provide All data"
             })
         }
 
-        const data = await db.query('INSERT INTO students (name,roll_no,fees,medium) VALUES(?,?,?,?)',[name,roll_no,fees,medium])
+        const data = await db.query('INSERT INTO students (name,roll_nol,fees,medium) VALUES(?,?,?,?)',[name,roll_nol,fees,medium])
         if(!data){
            return res.status(401).send({
                 success:false,
@@ -127,6 +127,6 @@ const createStudent =async (req,res)=>{
 
 }
 
+const updateStudent = ()=>{}
 
-
-module.exports={getStudents,getStudentsbyId,createStudent}
+module.exports={getStudents,getStudentsbyId,createStudent, updateStudent}
