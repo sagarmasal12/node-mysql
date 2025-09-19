@@ -18,6 +18,6 @@ router.get('/get/:id',getStudentsbyId)
 router.post('/create',createStudent)
 
 //Update Students
-router.post('/update/:id',updateStudent)
+router.put('/update/:id',updateStudent)
 
 module.exports = router;
