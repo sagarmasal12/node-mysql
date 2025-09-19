@@ -160,4 +160,31 @@ const updateStudent = async (req,res)=>{
     }
 }
 
-module.exports={getStudents,getStudentsbyId,createStudent, updateStudent}
+const deleteStudent = async(req,res)=>{
+    try {
+        const studentId = req.params.id;
+        if(!studentId){
+          return  res.status(404).send({
+                success:"false",
+                message:"Id not provide pls provide id  or Invalid data",
+                error
+            })
+        }
+        await db.query('DELETE FROM students WHERE id=?',[studentId])
+        res.status(200).send({
+            success:true,
+            message:"Student Delete Successfully.."
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:"false",
+            message:"Student Not Deleted",
+            error
+        })
+    }
+
+}
+
+module.exports={getStudents,getStudentsbyId,createStudent, updateStudent,deleteStudent}
