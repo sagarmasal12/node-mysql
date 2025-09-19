@@ -1,5 +1,5 @@
 const express = require("express")
-const { getStudents, getStudentsbyId ,createStudent, updateStudent} = require("../controllers/studentController")
+const { getStudents, getStudentsbyId ,createStudent, updateStudent, deleteStudent} = require("../controllers/studentController")
 
 
 // router obj 
@@ -19,5 +19,8 @@ router.post('/create',createStudent)
 
 //Update Students
 router.put('/update/:id',updateStudent)
+
+//Delete Students
+router.delete('/delete/:id',deleteStudent)
 
 module.exports = router;
