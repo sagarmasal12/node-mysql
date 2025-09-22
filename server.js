@@ -31,7 +31,7 @@ const PORT = process.env.PORT || 8000;
 mySqlPool.query('SELECT 1').then(()=>{
     //mysql
     console.log('MYSQL DB Connected'.bgGreen.red)
-//listen
+    //listen
     app.listen(PORT,()=>{
         console.log(`Server Running on port:- http://localhost:8080 ${PORT}`.bgYellow);
 
